@@ -8,6 +8,7 @@ import gensim
 import numpy as np
 from sklearn.externals import joblib
 
+
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
 model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
 
@@ -83,6 +84,7 @@ def predict_svm(model_filepath):
     rep_sen2 = np.array(rep_sentencevector(sentence2)).reshape(1, -1)
     print('sentence1', model.predict(rep_sen1)) #sentence1 [1]
     print('sentence2', model.predict(rep_sen2)) #sentence2 [0]
+
 
 if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = build_traindata()
