@@ -11,7 +11,7 @@ model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=Fa
 def rep_sentencevector(sentence):
     '''通过向量求和的方式标识sentence vector'''
     word_list = [word for word in sentence.split(' ')]
-    embedding_dim = 200
+    embedding_dim = 300
     embedding_matrix = np.zeros(embedding_dim)
     for index, word in enumerate(word_list):
         try:
@@ -53,7 +53,7 @@ def train_mlp(X_train, Y_train, X_test, Y_test):
     from keras.models import Sequential
     from keras.layers import Dense, Dropout
     model = Sequential()
-    model.add(Dense(64, input_dim=(200), activation='relu'))
+    model.add(Dense(64, input_dim=(300), activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))

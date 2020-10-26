@@ -11,7 +11,7 @@ model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=Fa
 def rep_sentencevector(sentence):
     '''通过向量求和的方式标识sentence vector'''
     word_list = [word for word in sentence.split(' ')]
-    embedding_dim = 200
+    embedding_dim = 300
     embedding_matrix = np.zeros(embedding_dim)
     for index, word in enumerate(word_list):
         try:

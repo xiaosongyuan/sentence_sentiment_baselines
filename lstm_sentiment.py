@@ -3,7 +3,6 @@ import numpy as np
 from keras.models import load_model
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
-import numpy as np
 
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
@@ -14,7 +13,7 @@ model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=Fa
 def rep_sentencevector(sentence):
     word_list = [word for word in sentence.split(' ')]
     max_words = 100
-    embedding_dim = 200
+    embedding_dim = 300
     embedding_matrix = np.zeros((max_words, embedding_dim))
     for index, word in enumerate(word_list):
         try:
@@ -54,7 +53,7 @@ def build_traindata():
 
 '''三层lstm进行训练，迭代20次'''
 def train_lstm(X_train, Y_train, X_test, Y_test):
-    data_dim = 200  # 对应词向量维度
+    data_dim = 300  # 对应词向量维度
     timesteps = 100  # 对应序列长度
     # expected input data shape: (batch_size, timesteps, data_dim)
     model = Sequential()

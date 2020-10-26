@@ -15,7 +15,7 @@ model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=Fa
 def rep_sentencevector(sentence):
     word_list = [word for word in sentence.split(' ')]
     max_words = 100
-    embedding_dim = 200
+    embedding_dim = 300
     embedding_matrix = np.zeros((max_words, embedding_dim))
     for index, word in enumerate(word_list):
         try:
@@ -61,7 +61,7 @@ def train_cnn(X_train, Y_train, X_test, Y_test):
     #建立sequential序贯模型
     model = Sequential()
     #input_shape = (rows行, cols列, 1) 1表示颜色通道数目, rows行，对应一句话的长度, cols列表示词向量的维度
-    model.add(Conv1D(64, 3, activation='relu', input_shape=(100, 200)))
+    model.add(Conv1D(64, 3, activation='relu', input_shape=(100, 300)))
     model.add(Conv1D(64, 3, activation='relu'))
     model.add(MaxPooling1D(3))
     model.add(Conv1D(128, 3, activation='relu'))
