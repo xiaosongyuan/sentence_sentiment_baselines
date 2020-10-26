@@ -3,7 +3,7 @@ function:基于wordvector + 传统机器学习方法的 情感分类
 '''
 import gensim
 import numpy as np
-from sklearn.externals import joblib
+import joblib
 
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
