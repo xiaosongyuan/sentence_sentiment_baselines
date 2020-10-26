@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: lstm_sentiment.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-3-19
 import gensim
 import numpy as np
 from keras.models import load_model
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
+import numpy as np
+    
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
-model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
+EMBEDDING_DIR = 'F:/Codes/pythonproject/word_embeddings/glove.840B.300d.word2vec.txt'
+model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=False)
 
 '''基于wordvector，通过lookup table的方式找到句子的wordvector的表示'''
 def rep_sentencevector(sentence):
@@ -54,9 +54,6 @@ def build_traindata():
 
 '''三层lstm进行训练，迭代20次'''
 def train_lstm(X_train, Y_train, X_test, Y_test):
-    from keras.models import Sequential
-    from keras.layers import LSTM, Dense
-    import numpy as np
     data_dim = 200  # 对应词向量维度
     timesteps = 100  # 对应序列长度
     # expected input data shape: (batch_size, timesteps, data_dim)

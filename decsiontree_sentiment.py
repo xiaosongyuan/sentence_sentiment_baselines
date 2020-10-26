@@ -1,15 +1,11 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: decsiontree_sentiment.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-3-20
-
 import gensim
 import numpy as np
-from sklearn.externals import joblib
+import joblib
+
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
-model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
+EMBEDDING_DIR = 'F:/Codes/pythonproject/word_embeddings/glove.840B.300d.word2vec.txt'
+model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=False)
 
 '''基于wordvector，通过lookup table的方式找到句子的wordvector的表示，向量求和做平均'''
 def rep_sentencevector(sentence):
@@ -23,7 +19,7 @@ def rep_sentencevector(sentence):
         except:
             pass
 
-    return embedding_matrix/len(word_list)
+    return embedding_matrix / len(word_list)
 
 '''构造训练数据'''
 def build_traindata():
@@ -83,6 +79,7 @@ def predict_decisiontree(model_filepath):
     rep_sen2 = np.array(rep_sentencevector(sentence2)).reshape(1, -1)
     print('sentence1', model.predict(rep_sen1)) #sentence1 [0]
     print('sentence2', model.predict(rep_sen2)) #sentence2 [0]
+
 
 if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = build_traindata()

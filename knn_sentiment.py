@@ -1,12 +1,7 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: knn_sentiment.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-3-20
-
 import gensim
 import numpy as np
 from sklearn.externals import joblib
+
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
 model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
@@ -23,7 +18,7 @@ def rep_sentencevector(sentence):
         except:
             pass
 
-    return embedding_matrix/len(word_list)
+    return embedding_matrix / len(word_list)
 
 '''构造训练数据'''
 def build_traindata():

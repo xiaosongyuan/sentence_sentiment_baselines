@@ -1,15 +1,15 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: cnn_sentiment.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-3-19
-
 import gensim
 import numpy as np
 from keras.models import load_model
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.layers import Embedding
+from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
+
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
-model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
+EMBEDDING_DIR = 'F:/Codes/pythonproject/word_embeddings/glove.840B.300d.word2vec.txt'
+model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=False)
 
 '''基于wordvector，通过lookup table的方式找到句子的wordvector的表示'''
 def rep_sentencevector(sentence):
@@ -57,10 +57,7 @@ def build_traindata():
 
 '''四层CNN进行训练，迭代20次'''
 def train_cnn(X_train, Y_train, X_test, Y_test):
-    from keras.models import Sequential
-    from keras.layers import Dense, Dropout
-    from keras.layers import Embedding
-    from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
+
     #建立sequential序贯模型
     model = Sequential()
     #input_shape = (rows行, cols列, 1) 1表示颜色通道数目, rows行，对应一句话的长度, cols列表示词向量的维度

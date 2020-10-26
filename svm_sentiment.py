@@ -1,22 +1,19 @@
-#!/usr/bin/env python3
-# coding: utf-8
-# File: svm_sentiment.py
-# Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-3-20
-
 import gensim
 import numpy as np
-from sklearn.externals import joblib
+# from sklearn.externals import joblib
+import joblib
 
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
-model = gensim.models.KeyedVectors.load_word2vec_format(VECTOR_DIR, binary=False)
+EMBEDDING_DIR = 'F:/Codes/pythonproject/word_embeddings/glove.840B.300d.word2vec.txt'
+model = gensim.models.KeyedVectors.load_word2vec_format(EMBEDDING_DIR, binary=False)
+print('Loading wordvector done!')
 
 '''基于wordvector，通过lookup table的方式找到句子的wordvector的表示，向量求和做平均'''
 def rep_sentencevector(sentence):
     '''通过向量求和的方式标识sentence vector'''
     word_list = [word for word in sentence.split(' ')]
-    embedding_dim = 200
+    embedding_dim = 300
     embedding_matrix = np.zeros(embedding_dim)
     for index, word in enumerate(word_list):
         try:
@@ -24,7 +21,7 @@ def rep_sentencevector(sentence):
         except:
             pass
 
-    return embedding_matrix/len(word_list)
+    return embedding_matrix / len(word_list)
 
 '''构造训练数据'''
 def build_traindata():
