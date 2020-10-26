@@ -4,7 +4,7 @@ from keras.models import load_model
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
 import numpy as np
-    
+
 
 VECTOR_DIR = './embedding/word_vector.bin'  # 词向量模型文件
 EMBEDDING_DIR = 'F:/Codes/pythonproject/word_embeddings/glove.840B.300d.word2vec.txt'
@@ -90,7 +90,7 @@ def predict_lstm(model_filepath):
 
 if __name__ == '__main__':
    # X_train, Y_train, X_test, Y_test = build_traindata()
-    model_filepath = './model/sentiment_model.h5'
+    model_filepath = './model/sentiment_lstm_model.h5'
    # print(X_train.shape, Y_train.shape)
    # print(X_test.shape, Y_test.shape)
    # train_lstm(X_train, Y_train, X_test, Y_test)
