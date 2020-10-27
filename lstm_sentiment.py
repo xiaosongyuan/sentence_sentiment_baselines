@@ -80,17 +80,17 @@ def train_lstm(X_train, Y_train, X_test, Y_test):
 '''实际应用，测试'''
 def predict_lstm(model_filepath):
     model = load_model(model_filepath)
-    sentence = '这个 电视 真 尼玛 垃圾 ， 老子 再也 不买 了'#[[0.01477097 0.98522896]]
-    #sentence = '这件 衣服 真的 太 好看 了 ！ 好想 买 啊 '#[[0.9843225  0.01567744]]
+    sentence = '这个 电视 真 尼玛 垃圾 ， 老子 再也 不买 了'    #[[0.01477097 0.98522896]]
+    #sentence = '这件 衣服 真的 太 好看 了 ！ 好想 买 啊 '  #[[0.9843225  0.01567744]]
     sentence_vector = np.array([rep_sentencevector(sentence)])
     print(sentence_vector)
     print('test after load: ', model.predict(sentence_vector))
 
 
 if __name__ == '__main__':
-   # X_train, Y_train, X_test, Y_test = build_traindata()
+    X_train, Y_train, X_test, Y_test = build_traindata()
     model_filepath = './model/sentiment_lstm_model.h5'
-   # print(X_train.shape, Y_train.shape)
-   # print(X_test.shape, Y_test.shape)
-   # train_lstm(X_train, Y_train, X_test, Y_test)
+    print(X_train.shape, Y_train.shape)
+    print(X_test.shape, Y_test.shape)
+    train_lstm(X_train, Y_train, X_test, Y_test)
     predict_lstm(model_filepath)

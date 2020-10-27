@@ -58,7 +58,7 @@ def build_traindata():
 '''四层CNN进行训练，迭代20次'''
 def train_cnn(X_train, Y_train, X_test, Y_test):
 
-    #建立sequential序贯模型
+    #建立sequential序列模型
     model = Sequential()
     #input_shape = (rows行, cols列, 1) 1表示颜色通道数目, rows行，对应一句话的长度, cols列表示词向量的维度
     model.add(Conv1D(64, 3, activation='relu', input_shape=(100, 300)))
@@ -97,11 +97,9 @@ def predict_cnn(model_filepath):
 
 
 if __name__ == '__main__':
-   # X_train, Y_train, X_test, Y_test = build_traindata()
+    X_train, Y_train, X_test, Y_test = build_traindata()
     model_filepath = './model/sentiment_cnn_model.h5'
-   # print(X_train.shape, Y_train.shape)
-   # print(X_test.shape, Y_test.shape)
-   # train_cnn(X_train, Y_train, X_test, Y_test)
+    print(X_train.shape, Y_train.shape)
+    print(X_test.shape, Y_test.shape)
+    train_cnn(X_train, Y_train, X_test, Y_test)
     predict_cnn(model_filepath)
-
-
